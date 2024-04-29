@@ -2,6 +2,7 @@
   --primary-font: 'Raleway', Arial, sans-serif;
   
   --primary-color: #fe001a; 
+  --primary-color-dark: #e20319;
   --secondary-color: #fff;
   --tertiary-color: #000;
   --highlight-color: #fbf719;
@@ -19,9 +20,15 @@
 
 html {
   font-size: 10px;
+  scroll-behavior: smooth;
 }
 
 .container {
   width: 80vw;
   margin: 0 auto;
+}
+
+.highlight-primary {
+  font-size: inherit;
+  color: var(--primary-color-dark);
 }

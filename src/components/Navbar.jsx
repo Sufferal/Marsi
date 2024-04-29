@@ -6,7 +6,7 @@ import moon from '../assets/img/moon.png'
 const Navbar = () => {
   return (
     <nav id="navbar" className="navbar">
-      <div className="container">
+      <div className="container navbar-wrapper">
         <a className="navbar-logo-wrapper" href="#header">
           <img className="navbar-logo" src={logo} alt="Marsi" />
           <h1 className="navbar-title">Marsi</h1>

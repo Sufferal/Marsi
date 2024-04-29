@@ -1,4 +1,4 @@
-.container, 
+.navbar-wrapper, 
 .navbar-logo-wrapper,
 .navbar-links {
   display: flex;  
@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-.container {
+.navbar-wrapper {
   justify-content: space-between;
   padding: 1.5rem 0;
 }

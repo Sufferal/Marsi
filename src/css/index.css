@@ -3,6 +3,7 @@
   
   --primary-color: #fe001a; 
   --primary-color-dark: #e20319;
+  --primary-color-contrast: #1f5776;
   --secondary-color: #fff;
   --tertiary-color: #000;
   --highlight-color: #fbf719;
@@ -48,6 +49,7 @@ body {
 
 .section-header {
   text-align: center;
+  margin-bottom: 5rem;
 }
 
 .section-title {

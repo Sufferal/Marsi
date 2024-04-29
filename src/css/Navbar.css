@@ -25,6 +25,7 @@
 
 .navbar-title {
   font-size: 3rem;
+  color: var(--primary-color-contrast);
 }
 
 .navbar-links {

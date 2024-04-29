@@ -1,5 +1,12 @@
 :root {
   --primary-font: 'Raleway', Arial, sans-serif;
+  
+  --primary-color: #fe001a; 
+  --secondary-color: #fff;
+  --tertiary-color: #000;
+  --highlight-color: #fbf719;
+
+  --default-transition: all 0.3s ease-in-out;
 }
 
 *, *::before, *::after {
@@ -12,4 +19,9 @@
 
 html {
   font-size: 10px;
+}
+
+.container {
+  width: 80vw;
+  margin: 0 auto;
 }

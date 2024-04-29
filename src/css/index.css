@@ -23,6 +23,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 .container {
   width: 80vw;
   margin: 0 auto;
@@ -31,4 +35,33 @@ html {
 .highlight-primary {
   font-size: inherit;
   color: var(--primary-color-dark);
+}
+
+.highlight-default {
+  font-size: inherit;
+  color: var(--highlight-color);
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.section-header {
+  text-align: center;
+}
+
+.section-title {
+  text-align: center;
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.section-desc {
+  max-width: 900px;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  font-size: 1.7rem;
+  letter-spacing: 0.1rem;
 }

@@ -1,0 +1,21 @@
+#footer {
+  padding: 2rem 0;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  text-align: center;
+}
+
+.footer-title, 
+.footer-subtitle {
+  font-size: 1.75rem;
+}
+
+.footer-title {
+  margin-bottom: 0.5rem;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+}

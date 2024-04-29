@@ -1,6 +1,6 @@
 #footer {
   padding: 2rem 0;
-  background-color: var(--primary-color);
+  background-color: var(--primary-color-contrast);
   color: var(--secondary-color);
   text-align: center;
 }

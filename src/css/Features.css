@@ -1,0 +1,28 @@
+.features {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+}
+
+.feature {
+  padding: 4rem 3rem;
+  border-radius: 15px;
+  background-color: var(--primary-color-contrast);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-icon {
+  --icon-size: 110px;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  margin-bottom: 3rem;
+}
+
+.feature-title {
+  color: var(--secondary-color);
+  font-size: 2rem;
+}

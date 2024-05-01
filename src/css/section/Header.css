@@ -1,7 +1,7 @@
 #header {
   width: 100vw;
-  height: 80vh; 
-  background: url('../assets/img/header_bg.jpg') no-repeat center center/cover;
+  height: 100vh; 
+  background: url('../../assets/img/header_bg.jpg') no-repeat center center/cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,9 +9,9 @@
 }
 
 .header-title {
-  font-size: 5rem;
+  font-size: 3rem;
   color: var(--secondary-color);
-  margin-bottom: 3rem;
+  margin-bottom: 1.8rem;
 }
 
 .header-btn {
@@ -21,7 +21,7 @@
   background-color: var(--primary-color-dark);
   color: var(--secondary-color);
   font-weight: bold;
-  padding: 1rem 2rem;
+  padding: 0.6rem 1.25rem;
   border-radius: 3px;
   transition: var(--default-transition);
 

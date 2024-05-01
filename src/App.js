@@ -1,17 +1,18 @@
-import About from './components/About';
-import Features from './components/Features';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import Navbar from './components/Navbar';
-import './css/App.css';
+import About from './components/section/About';
+import Features from './components/section/Features';
+import Footer from './components/section/Footer';
+import Header from './components/section/Header';
+import LessonList from './components/lesson/LessonList';
+import Navbar from './components/section/Navbar';
 
 function App() {
 
   return (
-    <div className="app-wrapper">
+    <div>
       <Navbar />
       <Header />
       <Features />
+      <LessonList />  
       <About />
       <Footer />
     </div>

@@ -1,5 +1,5 @@
 #footer {
-  padding: 2rem 0;
+  padding: 1.25rem 0;
   background-color: var(--primary-color-contrast);
   color: var(--secondary-color);
   text-align: center;
@@ -7,11 +7,11 @@
 
 .footer-title, 
 .footer-subtitle {
-  font-size: 1.75rem;
+  font-size: 1.1rem;
 }
 
 .footer-title {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .footer-link {

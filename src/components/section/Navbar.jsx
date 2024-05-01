@@ -1,7 +1,7 @@
 import React from 'react'
-import '../css/Navbar.css' 
-import logo from '../assets/img/logo.png'
-import moon from '../assets/img/moon.png'
+import '../../css/section/Navbar.css' 
+import logo from '../../assets/img/logo.png'
+import moon from '../../assets/img/moon.png'
 
 const Navbar = () => {
   return (

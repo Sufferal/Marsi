@@ -2,11 +2,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5rem;
+  gap: 3rem;
 }
 
 .feature {
-  padding: 4rem 3rem;
+  padding: 2.5rem 1.8rem;
   border-radius: 15px;
   background-color: var(--primary-color-contrast);
   display: flex;
@@ -16,13 +16,13 @@
 }
 
 .feature-icon {
-  --icon-size: 110px;
+  --icon-size: 100px;
   width: var(--icon-size);
   height: var(--icon-size);
-  margin-bottom: 3rem;
+  margin-bottom: 1.8rem;
 }
 
 .feature-title {
   color: var(--secondary-color);
-  font-size: 2rem;
+  font-size: 1.25rem;
 }

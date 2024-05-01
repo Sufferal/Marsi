@@ -1,6 +1,6 @@
 import React from "react";
-import "../css/About.css";
-import analytics from "../assets/img/analytics.png";
+import "../../css/section/About.css";
+import analytics from "../../assets/img/analytics.png";
 
 const About = () => {
   return (

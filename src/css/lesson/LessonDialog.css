@@ -1,0 +1,41 @@
+.dialog-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dialog-content .lesson-score {
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.dialog-content .lesson-desc {
+  margin-bottom: 2.5rem;
+
+}
+
+.dialog-content .lesson-content {
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.03rem;
+}
+
+.dialog-content .lesson-content.single-word {
+  margin-bottom: 0.3rem;
+}
+
+.dialog-btn-start {
+  padding: 0.6rem;
+  background-color: var(--primary-color-contrast);
+  color: var(--secondary-color);
+  border: none;
+  outline: none;
+  cursor: pointer;  
+  border-radius: 0.3rem;
+  font-weight: bold;
+  margin-top: 1.25rem;
+  transition: var(--default-transition);
+  transition: 0.2s;
+
+  &:hover {
+    background-color: var(--success-color);
+  }
+}

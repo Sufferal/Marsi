@@ -1,0 +1,81 @@
+.lesson {
+  width: 700px;
+  padding: 1.5rem;
+  border-radius: 3px;
+  background-color: var(--secondary-color);
+  color: var(--primary-color-contrast);
+  cursor: pointer;
+  transition: var(--default-transition);
+  transition-duration: 0.25s;
+
+  &:hover {
+    background-color: var(--primary-color-dark);
+    color: var(--secondary-color);
+
+    .lesson-level {
+      background-color: var(--secondary-color);
+      color: var(--primary-color);
+    }
+
+    .lesson-score span {
+      color: var(--highlight-color);
+    }
+  }
+}
+
+.lesson-title,
+.lesson-level,
+.lesson-desc {
+  margin-bottom: 0.6rem;
+}
+
+.lesson-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.lesson-level {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  font-weight: bold;
+  border-radius: 20px;
+  color: var(--secondary-color);
+  background-color: var(--default-background-color); 
+}
+
+.lesson-level-beginner {
+  background: var(--success-color);
+}
+
+.lesson-level-intermediate {
+  color: var(--primary-color-contrast);
+  background: var(--highlight-color);
+}
+
+.lesson-level-advanced {
+  background: var(--primary-color);
+}
+
+.lesson-desc {
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.03rem;
+}
+
+.lesson-score {
+  font-weight: bold;
+  font-size: 1.25rem;
+
+  span {
+    font-size: inherit;
+  }
+}
+
+.lesson-score-low,
+.lesson-score-medium {
+  color: var(--primary-color);
+}
+
+.lesson-score-high {
+  color: var(--success-color);
+}

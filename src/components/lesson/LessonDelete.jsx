@@ -9,6 +9,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import "../../css/lesson/LessonDelete.css";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const LessonDelete = ({ deleteLesson }) => {
   const [open, setOpen] = React.useState(false);
@@ -25,6 +26,8 @@ const LessonDelete = ({ deleteLesson }) => {
     deleteLesson();
     setOpen(false);
   };
+
+  const { color } = React.useContext(ThemeContext);
 
   return (
     <div className="lesson-delete">
@@ -45,6 +48,11 @@ const LessonDelete = ({ deleteLesson }) => {
         onClose={handleClose}
         aria-labelledby="delete-dialog-title"
         aria-describedby="delete-dialog-description"
+        PaperProps={{
+          style: {
+            backgroundColor: color 
+          },
+        }}
       >
         <DialogTitle id="delete-dialog-title">
           {"Are you sure you want to delete this lesson?"}

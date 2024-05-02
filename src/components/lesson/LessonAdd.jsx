@@ -16,6 +16,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const LessonAdd = ({ addLesson }) => {
   const [open, setOpen] = useState(false);
@@ -76,9 +77,7 @@ const LessonAdd = ({ addLesson }) => {
     const answerInput = document.getElementById("addAnswer").value;
 
     if (!questionInput || !answerInput) {
-      alert(
-        "Please make sure the question and answer are not empty."
-      );
+      alert("Please make sure the question and answer are not empty.");
       return;
     }
 
@@ -117,6 +116,8 @@ const LessonAdd = ({ addLesson }) => {
     setOpen(false);
   };
 
+  const { color } = React.useContext(ThemeContext);
+
   return (
     <div className="lesson-add">
       <h3 className="lesson-add-title">Add a lesson:</h3>
@@ -140,6 +141,9 @@ const LessonAdd = ({ addLesson }) => {
           component: "form",
           onSubmit: handleSubmit,
           id: "add-lesson-form",
+          style: {
+            backgroundColor: color,
+          },
         }}
       >
         <DialogTitle className="add-lesson-dialog-title">
@@ -247,7 +251,11 @@ const LessonAdd = ({ addLesson }) => {
                   type="text"
                   variant="outlined"
                 />
-                <button className="add-option-btn" type="button" onClick={handleAddOption}>
+                <button
+                  className="add-option-btn"
+                  type="button"
+                  onClick={handleAddOption}
+                >
                   Add option
                 </button>
               </div>
@@ -276,7 +284,6 @@ const LessonAdd = ({ addLesson }) => {
                   </div>
                 ))}
               </div>
- 
 
               <button
                 className="add-lesson-test-btn"

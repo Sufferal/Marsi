@@ -3,6 +3,7 @@ import "../../css/section/Features.css";
 import icon_1 from "../../assets/img/features/idea.png";
 import icon_2 from "../../assets/img/features/level.png";
 import icon_3 from "../../assets/img/features/progress.png";
+import roadmap from "../../assets/img/features/roadmap.jpg";
 
 const Features = () => {
   const features = [
@@ -44,6 +45,15 @@ const Features = () => {
                 <h3 className="feature-title">{feature.title}</h3>
               </div>
             ))}
+          </div>
+
+          <div className="roadmap">
+            <p className="section-desc">
+              The roadmap for learning is simple. Start with the basics and
+              gradually move on to more complex topics. The levels are designed
+              to help you learn at your own pace.
+            </p>
+            <img className="roadmap-img" src={roadmap} alt="Roadmap" />
           </div>
         </div>
       </div>

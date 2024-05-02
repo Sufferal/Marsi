@@ -30,7 +30,7 @@ const Navbar = ({ isClicked, handleChange }) => {
           <a className="navbar-link" href="#lessons" onClick={(e) => handleLinkClick(e, "lessons")}>
             Lessons
           </a>
-          <a className="navbar-link" href="#about">
+          <a className="navbar-link" href="#about" onClick={(e) => handleLinkClick(e, "about")}>
             About us
           </a>
           <a className="navbar-link" href="#contact" onClick={(e) => handleLinkClick(e, "contact")}>

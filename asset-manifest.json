@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/marsi/static/css/main.f6b32e8a.css",
+    "main.js": "/marsi/static/js/main.e9c3b8d5.js",
+    "static/media/header_bg.jpg": "/marsi/static/media/header_bg.47638ce390eaca553c9f.jpg",
+    "static/media/roadmap.jpg": "/marsi/static/media/roadmap.c9292b32ec508e2e1c2c.jpg",
+    "static/media/logo.png": "/marsi/static/media/logo.52e09fca4006a08960a9.png",
+    "static/media/progress.png": "/marsi/static/media/progress.9ff36bc3434d16d2d2da.png",
+    "static/media/sun.png": "/marsi/static/media/sun.27a5d8395620746ff965.png",
+    "static/media/idea.png": "/marsi/static/media/idea.283ff66a2aabb677c1dc.png",
+    "static/media/moon.png": "/marsi/static/media/moon.5bf8bc2b40709d6b82aa.png",
+    "index.html": "/marsi/index.html",
+    "main.f6b32e8a.css.map": "/marsi/static/css/main.f6b32e8a.css.map",
+    "main.e9c3b8d5.js.map": "/marsi/static/js/main.e9c3b8d5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f6b32e8a.css",
+    "static/js/main.e9c3b8d5.js"
+  ]
+}

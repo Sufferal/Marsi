@@ -33,6 +33,9 @@ const Navbar = ({ isClicked, handleChange }) => {
           <a className="navbar-link" href="#about">
             About us
           </a>
+          <a className="navbar-link" href="#contact" onClick={(e) => handleLinkClick(e, "contact")}>
+            Contact 
+          </a>
           <button className="navbar-btn">
             <img
               className="navbar-icon"

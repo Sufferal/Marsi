@@ -1,0 +1,35 @@
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.form-input,
+.form-btn,
+.form-select {
+  min-width: 500px;
+  padding: 0.5rem 1rem;
+}
+
+.form-btn {
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  color: var(--primary-color-contrast);
+  background-color: var(--highlight-color);
+  transition: var(--default-transition);
+}

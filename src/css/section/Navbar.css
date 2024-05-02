@@ -1,5 +1,16 @@
 #navbar {
   background-color: var(--secondary-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  --horizontal-length: 0px;
+  --vertical-length: 0px;
+  --blur-radius: 10px;
+  --spread-radius: 0px;
+  --shadow-color: var(--primary-color);
+  -webkit-box-shadow: var(--horizontal-length) var(--vertical-length) var(--blur-radius) var(--spread-radius) var(--shadow-color);
+  -moz-box-shadow: var(--horizontal-length) var(--vertical-length) var(--blur-radius) var(--spread-radius) var(--shadow-color); 
+  box-shadow: var(--horizontal-length) var(--vertical-length) var(--blur-radius) var(--spread-radius) var(--shadow-color); 
 }
 
 .navbar-wrapper, 

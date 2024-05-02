@@ -1,7 +1,33 @@
 .lesson-list {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 3rem;
+}
+
+.lessons-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-lessons-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-lessons-list {
+  color: var(--highlight-color);
+  font-weight: bold;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.yes-lessons-list {
+  color: var(--secondary-color);
+  font-weight: bold;
 }

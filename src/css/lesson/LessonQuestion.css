@@ -1,3 +1,7 @@
 #test-group-label {
   font-weight: bold;
 }
+
+.test-buttons-group span {
+  font-family: var(--default-font) !important;
+}

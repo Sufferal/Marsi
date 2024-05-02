@@ -1,0 +1,376 @@
+[
+  {
+    "id": "5212ae0b-6cf4-4de1-8799-36cb6a5ace0a",
+    "title": "Lesson 1: Greetings",
+    "level": "beginner",
+    "description": "Learn how to greet people in different situations and contexts.",
+    "score": 0,
+    "content": [
+      "Greetings are an important way to start a conversation and show respect and courtesy towards others. Here are some common greetings you can use:",
+      "Ciao",
+      "It's the most common informal greeting. It can be used to say both hello and goodbye. For example: Ciao, how are you? or Ciao, see you later!",
+      "Buongiorno",
+      "It means good morning and is used in the morning until midday. It can be shortened to Buon giorno. For example: Buongiorno, how are you today?",
+      "Buonasera",
+      "This means good evening and is used in the late afternoon and evening. For example: Buonasera, how was your day?",
+      "Buonanotte",
+      "It means goodnight and is used when saying goodbye in the evening or before going to bed. For example: Buonanotte, sleep well!",
+      "Salve",
+      "This is a neutral and formal greeting that can be used at any time of the day. It's a bit like saying hello. For example: Salve, nice to meet you."
+    ],
+    "tests": [
+      {
+        "question": "What does 'Ciao' mean?",
+        "options": ["Good morning", "Hello", "Good afternoon", "Good evening"],
+        "answer": "Hello"
+      },
+      {
+        "question": "When can you use 'Buongiorno'?",
+        "options": [
+          "In the morning",
+          "In the afternoon",
+          "In the evening",
+          "At night"
+        ],
+        "answer": "In the morning"
+      },
+      {
+        "question": "What is 'Salve' similar to?",
+        "options": ["Good morning", "Hello", "Good afternoon", "Good evening"],
+        "answer": "Hello"
+      }
+    ]
+  },
+  {
+    "id": "ce64a603-d523-4ee8-8b87-7698fee2d39d",
+    "title": "Lesson 15: Travel",
+    "level": "intermediate",
+    "description": "Learn how to ask for directions and order food at a restaurant.",
+    "score": 0,
+    "content": [
+      "When traveling to a foreign country, it's important to know how to ask for directions and order food at a restaurant. Here are some useful phrases you can use:",
+      "Italian",
+      "Scusi, dov'è la stazione?",
+      "English",
+      "Excuse me, where is the train station?",
+      "Italian",
+      "Mi scusi, come si arriva al museo?",
+      "English",
+      "Excuse me, how do I get to the museum?",
+      "Italian",
+      "Vorrei prenotare un tavolo per due, per favore.",
+      "English",
+      "I would like to book a table for two, please."
+    ],
+    "tests": [
+      {
+        "question": "What does 'Scusi, dov'è la stazione?' mean?",
+        "options": [
+          "Where is the train station?",
+          "How do I get to the museum?",
+          "Can I book a table for two?",
+          "How are you?"
+        ],
+        "answer": "Where is the train station?"
+      },
+      {
+        "question": "What does 'Vorrei prenotare un tavolo per due, per favore.' mean?",
+        "options": [
+          "Where is the train station?",
+          "How do I get to the museum?",
+          "I would like to book a table for two, please.",
+          "How are you?"
+        ],
+        "answer": "I would like to book a table for two, please."
+      }
+    ]
+  },
+  {
+    "id": "adf519b0-a093-4217-ab52-f6b97146ab3b",
+    "title": "Lesson 30: Business",
+    "level": "advanced",
+    "description": "Learn how to write a professional email and give a presentation.",
+    "score": 0,
+    "content": [
+      "In order to succeed in the business world, it's important to know how to write a professional email and give a presentation. Here are some tips to help you:",
+      "Introduction", "Buongiorno a tutti, oggi parleremo di...", "Good morning everyone, today we will talk about...",
+      "Body", "Il nostro obiettivo è...", "Our goal is...",
+      "Conclusion", "Grazie per l'attenzione.", "Thank you for your attention."
+    ],
+    "tests": [
+      {
+        "question": "What does 'Buongiorno a tutti, oggi parleremo di...' mean?",
+        "options": [
+          "Good morning everyone, today we will talk about...",
+          "Our goal is...",
+          "Thank you for your attention.",
+          "How are you?"
+        ],
+        "answer": "Good morning everyone, today we will talk about..."
+      },
+      {
+        "question": "What does 'Il nostro obiettivo è...' mean?",
+        "options": [
+          "Good morning everyone, today we will talk about...",
+          "Our goal is...",
+          "Thank you for your attention.",
+          "How are you?"
+        ],
+        "answer": "Our goal is..."
+      }
+    ]
+  },
+  {
+    "id": "d4032bbb-6266-4d8b-a6a3-0edae1ec9f8e",
+    "title": "Lesson 2: Numbers",
+    "level": "beginner",
+    "description": "Learn how to count from 1 to 10 in Italian.",
+    "score": 0,
+    "content": [
+      "Numbers are an essential part of everyday life. Here are the numbers from 1 to 10 in Italian:",
+      "uno - one",
+      "due - two",
+      "tre - three",
+      "quattro - four",
+      "cinque - five",
+      "sei - six",
+      "sette - seven",
+      "otto - eight",
+      "nove - nine",
+      "dieci - ten"
+    ],
+    "tests": [
+      {
+        "question": "What does 'uno' mean?",
+        "options": ["one", "two", "three", "four"],
+        "answer": "one"
+      },
+      {
+        "question": "What does 'cinque' mean?",
+        "options": ["one", "two", "three", "five"],
+        "answer": "five"
+      },
+      {
+        "question": "What does 'otto' mean?",
+        "options": ["six", "seven", "eight", "nine"],
+        "answer": "eight"
+      }
+    ]
+  },
+  {
+    "id": "6e23b6f3-e344-4b4c-b715-7fa0e7bfac4f",
+    "title": "Lesson 3: Colors",
+    "level": "beginner",
+    "description": "Learn how to say colors in Italian.",
+    "score": 0,
+    "content": [
+      "Colors are all around us and can be used to describe objects and emotions. Here are some common colors in Italian:",
+      "rosso - red",
+      "blu - blue",
+      "giallo - yellow",
+      "verde - green",
+      "arancione - orange",
+      "viola - purple",
+      "nero - black",
+      "bianco - white",
+      "grigio - gray"
+    ],
+    "tests": [
+      {
+        "question": "What does 'rosso' mean?",
+        "options": ["red", "blue", "yellow", "green"],
+        "answer": "red"
+      },
+      {
+        "question": "What does 'giallo' mean?",
+        "options": ["red", "blue", "yellow", "green"],
+        "answer": "yellow"
+      },
+      {
+        "question": "What does 'nero' mean?",
+        "options": ["black", "white", "gray", "purple"],
+        "answer": "black"
+      }
+    ]
+  },
+  {
+    "id": "e88804da-d6e6-4f58-9d72-a156a8756343",
+    "title": "Lesson 10: Family",
+    "level": "intermediate",
+    "description": "Learn how to talk about your family in Italian.",
+    "score": 0,
+    "content": [
+      "Family is an important part of Italian culture. Here are some common family members and relationships:",
+      "madre - mother",
+      "padre - father",
+      "figlio - son",
+      "figlia - daughter",
+      "nonno - grandfather",
+      "nonna - grandmother",
+      "zio - uncle",
+      "zia - aunt",
+      "cugino - cousin"
+    ],
+    "tests": [
+      {
+        "question": "What does 'madre' mean?",
+        "options": ["mother", "father", "son", "daughter"],
+        "answer": "mother"
+      },
+      {
+        "question": "What does 'nonno' mean?",
+        "options": ["grandfather", "grandmother", "uncle", "aunt"],
+        "answer": "grandfather"
+      },
+      {
+        "question": "What does 'cugino' mean?",
+        "options": ["mother", "father", "son", "cousin"],
+        "answer": "cousin"
+      }
+    ]
+  }, 
+  {
+    "id": "127e2cf6-1cfa-450e-8f4b-77758fbfe2e3",
+    "title": "Lesson 33: Health",
+    "level": "advanced",
+    "description": "Learn how to talk about health and wellness in Italian.",
+    "score": 0,
+    "content": [
+      "Health is an important aspect of life. Here are some common phrases and vocabulary related to health and wellness:",
+      "Italian",
+      "Mi fa male la testa.",
+      "English",
+      "I have a headache.",
+      "Italian",
+      "Ho la febbre.",
+      "English",
+      "I have a fever.",
+      "Italian",
+      "Mi sento stanco.",
+      "English",
+      "I feel tired."
+    ],
+    "tests": [
+      {
+        "question": "What does 'Mi fa male la testa.' mean?",
+        "options": [
+          "I have a headache.",
+          "I have a fever.",
+          "I feel tired.",
+          "I feel sick."
+        ],
+        "answer": "I have a headache."
+      },
+      {
+        "question": "What does 'Ho la febbre.' mean?",
+        "options": [
+          "I have a headache.",
+          "I have a fever.",
+          "I feel tired.",
+          "I feel sick."
+        ],
+        "answer": "I have a fever."
+      },
+      {
+        "question": "What does 'Mi sento stanco.' mean?",
+        "options": [
+          "I have a headache.",
+          "I have a fever.",
+          "I feel tired.",
+          "I feel sick."
+        ],
+        "answer": "I feel tired."
+      }
+    ]
+  },
+  {
+    "id": "7808af28-9981-49e3-8f88-0b563a0922e5",
+    "title": "Lesson 20: Food",
+    "level": "intermediate",
+    "description": "Learn how to order food at a restaurant and talk about Italian cuisine.",
+    "score": 0,
+    "content": [
+      "Italian cuisine is known for its delicious food and rich flavors. Here are some common dishes and ingredients you can find in Italy:",
+      "pasta - pasta",
+      "pizza - pizza",
+      "risotto - risotto",
+      "panna - cream",
+      "formaggio - cheese",
+      "olio d'oliva - olive oil",
+      "pomodoro - tomato",
+      "basilico - basil",
+      "mozzarella - mozzarella"
+    ],
+    "tests": [
+      {
+        "question": "What does 'pasta' mean?",
+        "options": ["pasta", "pizza", "risotto", "cream"],
+        "answer": "pasta"
+      },
+      {
+        "question": "What does 'olio d'oliva' mean?",
+        "options": ["cream", "cheese", "olive oil", "tomato"],
+        "answer": "olive oil"
+      },
+      {
+        "question": "What does 'mozzarella' mean?",
+        "options": ["cheese", "basil", "tomato", "mozzarella"],
+        "answer": "mozzarella"
+      }
+    ]
+  },
+  {
+    "id": "53ca3a40-eabc-4ab7-ac9e-3f8fdaf13734",
+    "title": "Lesson 12: Weather",
+    "level": "intermediate",
+    "description": "Learn how to talk about the weather in Italian.",
+    "score": 0,
+    "content": [
+      "The weather can affect our mood and daily activities. Here are some common phrases and vocabulary related to the weather:",
+      "Italian",
+      "Che tempo fa oggi?",
+      "English",
+      "What's the weather like today?",
+      "Italian",
+      "Fa caldo.",
+      "English",
+      "It's hot.",
+      "Italian",
+      "Piove.",
+      "English",
+      "It's raining."
+    ],
+    "tests": [
+      {
+        "question": "What does 'Che tempo fa oggi?' mean?",
+        "options": [
+          "What's the weather like today?",
+          "It's hot.",
+          "It's raining.",
+          "It's cold."
+        ],
+        "answer": "What's the weather like today?"
+      },
+      {
+        "question": "What does 'Fa caldo.' mean?",
+        "options": [
+          "What's the weather like today?",
+          "It's hot.",
+          "It's raining.",
+          "It's cold."
+        ],
+        "answer": "It's hot."
+      },
+      {
+        "question": "What does 'Piove.' mean?",
+        "options": [
+          "What's the weather like today?",
+          "It's hot.",
+          "It's raining.",
+          "It's cold."
+        ],
+        "answer": "It's raining."
+      }
+    ]
+  }
+]

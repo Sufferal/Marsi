@@ -1,0 +1,116 @@
+.lesson-add {
+  padding: 0rem 1rem;
+  background-color: var(--secondary-color);
+  margin-bottom: 1.5rem;
+  color: var(--primary-color-contrast);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lesson-add-title {
+  margin-right: 1rem;
+}
+
+.add-lesson-dialog-title,
+.add-lesson-dialog-tip,
+.add-lesson-dialog-textfield label,
+.add-lesson-dialog-textfield input,
+.add-lesson-dialog-btn,
+#add-lesson-dialog-level,
+.add-lesson-dialog-radio-group span {
+  font-family: var(--default-font) !important;
+}
+
+.add-lesson-dialog-title {
+  font-weight: bold !important;
+}
+
+.add-lesson-dialog-btn {
+  font-weight: bold !important;
+}
+
+.add-lesson-dialog-form {
+  width: 100%;
+}
+
+#add-lesson-dialog-level {
+  margin-top: 1rem;
+}
+
+.add-lesson-dialog-radio-group {
+  margin-bottom: 1rem;
+}
+
+.add-lesson-test-title {
+  font-size: 1.3rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.add-lesson-test-btn {
+  background-color: var(--success-color);
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  font-weight: bold;
+  color: var(--secondary-color);
+  border: 2px solid var(--success-color);
+  transition: var(--default-transition);
+  margin-top: 1rem;
+  width: 100%;
+
+  &:hover {
+    background-color: var(--secondary-color);
+    color: var(--success-color);
+  }
+}
+
+.add-option-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.add-lesson-dialog-option {
+  width: 75%;
+}
+
+.add-option-btn {
+  background-color: var(--success-color);
+  border: none;
+  cursor: pointer;
+  padding: 1rem 0.5rem;
+  border-radius: 3px;
+  font-weight: bold;
+  color: var(--secondary-color);
+  border: 2px solid var(--success-color);
+  transition: var(--default-transition);
+  margin-left: 1rem;
+
+  &:hover {
+    background-color: var(--secondary-color);
+    color: var(--success-color);
+  }
+}
+
+.added-tests {
+  margin-bottom: 2rem;
+}
+
+.added-test,
+.added-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.added-tests-title,
+.added-options-title {
+  font-size: 1.25rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.added-test-question,
+.added-option-text {
+  font-size: 1.25rem;
+}

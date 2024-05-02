@@ -1,0 +1,114 @@
+.lesson-edit {
+  background-color: var(--secondary-color);
+  color: var(--primary-color-contrast);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lesson-edit-title {
+  margin-right: 1rem;
+}
+
+.edit-lesson-dialog-title,
+.edit-lesson-dialog-tip,
+.edit-lesson-dialog-textfield label,
+.edit-lesson-dialog-textfield input,
+.edit-lesson-dialog-btn,
+#edit-lesson-dialog-level,
+.edit-lesson-dialog-radio-group span {
+  font-family: var(--default-font) !important;
+}
+
+.edit-lesson-dialog-title {
+  font-weight: bold !important;
+}
+
+.edit-lesson-dialog-btn {
+  font-weight: bold !important;
+}
+
+.edit-lesson-dialog-form {
+  width: 100%;
+}
+
+#edit-lesson-dialog-level {
+  margin-top: 1rem;
+}
+
+.edit-lesson-dialog-radio-group {
+  margin-bottom: 1rem;
+}
+
+.edit-lesson-test-title {
+  font-size: 1.3rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.edit-lesson-test-btn {
+  background-color: var(--success-color);
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  font-weight: bold;
+  color: var(--secondary-color);
+  border: 2px solid var(--success-color);
+  transition: var(--default-transition);
+  margin-top: 1rem;
+  width: 100%;
+
+  &:hover {
+    background-color: var(--secondary-color);
+    color: var(--success-color);
+  }
+}
+
+.edit-option-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.edit-lesson-dialog-option {
+  width: 75%;
+}
+
+.edit-option-btn {
+  background-color: var(--success-color);
+  border: none;
+  cursor: pointer;
+  padding: 1rem 0.5rem;
+  border-radius: 3px;
+  font-weight: bold;
+  color: var(--secondary-color);
+  border: 2px solid var(--success-color);
+  transition: var(--default-transition);
+  margin-left: 1rem;
+
+  &:hover {
+    background-color: var(--secondary-color);
+    color: var(--success-color);
+  }
+}
+
+.edited-tests {
+  margin-bottom: 2rem;
+}
+
+.edited-test,
+.edited-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edited-tests-title,
+.edited-options-title {
+  font-size: 1.25rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.edited-test-question,
+.edited-option-text {
+  font-size: 1.25rem;
+}

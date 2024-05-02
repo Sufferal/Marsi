@@ -13,7 +13,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const LessonDialog = ({ open, handleClose, lesson, scoreClass }) => {
+const LessonDialog = ({ open, handleClose, lesson, scoreClass, updateLessonScore }) => {
   const [startClicked, setStartClicked] = useState(false);
 
   const handleStartClick = () => {
@@ -47,7 +47,7 @@ const LessonDialog = ({ open, handleClose, lesson, scoreClass }) => {
       <div className="dialog-content">
         <h2 className="lesson-score">
           Score:{" "}
-          <span className={`lesson-score-${scoreClass}`}>{lesson.score}</span>
+          <span className={`lesson-score-${scoreClass}`}>{lesson.score}/100</span>
         </h2>
         <div className="container">
           <h3 className="lesson-title">{lesson.title}</h3>
@@ -66,9 +66,11 @@ const LessonDialog = ({ open, handleClose, lesson, scoreClass }) => {
 
           {startClicked && (
             <LessonReview
+              id={lesson.id}
               tests={lesson.tests}
               handleSubmitClick={handleSubmitClick}
               handleClose={handleClose}
+              updateLessonScore={updateLessonScore}
             />
           )}
         </div>

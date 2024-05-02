@@ -1,9 +1,36 @@
-import React from 'react';
-import LessonQuestion from './LessonQuestion';
-import '../../css/lesson/LessonReview.css';
+import React, { useState } from "react";
+import LessonQuestion from "./LessonQuestion";
+import "../../css/lesson/LessonReview.css";
 
-const LessonReview = ({ tests, handleSubmitClick, handleClose }) => {
- const handleFinishClick = () => {
+const LessonReview = ({ id, tests, handleSubmitClick, handleClose, updateLessonScore }) => {
+  const [selectedAnswers, setSelectedAnswers] = useState(
+    Array(tests.length).fill(null)
+  );
+
+  const handleOptionChange = (id, selectedOption) => {
+    const newSelectedAnswers = [...selectedAnswers];
+    newSelectedAnswers[id] = selectedOption;
+    setSelectedAnswers(newSelectedAnswers);
+  };
+
+  const handleFinishClick = () => {
+    const allAnswered = selectedAnswers.every((answer) => answer !== null);
+    if (!allAnswered) {
+      alert("Please answer all questions before submitting.");
+      return;
+    }
+
+     // Assuming tests[i].correctAnswer holds the correct answer for each test
+    const correctAnswersCount = selectedAnswers.reduce((count, answer, index) => {
+      return answer === tests[index].answer ? count + 1 : count;
+    }, 0);
+
+    let score = (correctAnswersCount / tests.length) * 100;
+    if(isNaN(score)) {
+      score = 0;
+    }
+    updateLessonScore(id, Math.trunc(score));
+
     handleSubmitClick();
     handleClose();
   };
@@ -18,6 +45,9 @@ const LessonReview = ({ tests, handleSubmitClick, handleClose }) => {
               <LessonQuestion
                 question={test.question}
                 options={test.options}
+                opOptionChange={(selectedOption) =>
+                  handleOptionChange(index, selectedOption)
+                }
               />
             </div>
           ))
@@ -25,7 +55,9 @@ const LessonReview = ({ tests, handleSubmitClick, handleClose }) => {
           <p className="no-tests">This lesson has no tests.</p>
         )}
       </div>
-      <button className="dialog-btn-submit" onClick={handleFinishClick}>Submit</button>
+      <button className="dialog-btn-submit" onClick={handleFinishClick}>
+        Submit
+      </button>
     </div>
   );
 };

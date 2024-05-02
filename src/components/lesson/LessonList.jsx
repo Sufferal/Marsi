@@ -1,75 +1,65 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../css/lesson/LessonList.css";
 import Lesson from "./Lesson";
+import LessonAdd from "./LessonAdd";
+import defaultLessons from "../../assets/data/defaultLessons.json";
+import LessonFilter from "./LessonFilter";
 
 const LessonList = () => {
-  let lessons = [
-    {
-      title: "Lesson 1: Greetings",
-      level: "Beginner",
-      description:
-        "Learn how to greet people in different situations and contexts.",
-      score: 0,
-      content: [
-        "Greetings are an important way to start a conversation and show respect and courtesy towards others. Here are some common greetings you can use:",
-        "Ciao",
-        "It's the most common informal greeting. It can be used to say both hello and goodbye. For example: Ciao, how are you? or Ciao, see you later!",
-        "Buongiorno",
-        "It means good morning and is used in the morning until midday. It can be shortened to Buon giorno. For example: Buongiorno, how are you today?",
-        "Buonasera",
-        "This means good evening and is used in the late afternoon and evening. For example: Buonasera, how was your day?",
-        "Buonanotte",
-        "It means goodnight and is used when saying goodbye in the evening or before going to bed. For example: Buonanotte, sleep well!",
-        "Salve",
-        "This is a neutral and formal greeting that can be used at any time of the day. It's a bit like saying hello. For example: Salve, nice to meet you.",
-      ],
-      tests: [
-        {
-          question: "What does 'Ciao' mean?",
-          options: ["Good morning", "Hello", "Good afternoon", "Good evening"],
-          answer: "Hello",
-        },
-        {
-          question: "When can you use 'Buongiorno'?",
-          options: [
-            "In the morning",
-            "In the afternoon",
-            "In the evening",
-            "At night",
-          ],
-          answer: "In the morning",
-        },
-        {
-          question: "What is 'Salve' similar to?",
-          options: ["Good morning", "Hello", "Good afternoon", "Good evening"],
-          answer: "Hello",
-        },
-      ],
-    },
-    {
-      title: "Lesson 15: Travel",
-      level: "Intermediate",
-      description:
-        "Learn how to ask for directions and order food at a restaurant.",
-      score: 40,
-      content: [],
-      tests: [],
-    },
-    {
-      title: "Lesson 30: Business",
-      level: "Advanced",
-      description:
-        "Learn how to write a professional email and give a presentation.",
-      score: 100,
-      content: [
-        "Dear Sir/Madam,",
-        "I am writing to enquire about the job vacancy.",
-      ],
-      tests: [],
-    },
-  ];
+  const storedLessons = localStorage.getItem("lessons");
+  const initialLessons = storedLessons
+    ? JSON.parse(storedLessons)
+    : defaultLessons;
+  const [lessons, setLessons] = useState(initialLessons);
+  const [filter, setFilter] = useState("all");
 
-  console.log(lessons);
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter);
+  };
+  const filteredLessons = lessons.filter(
+    (lesson) => filter === "all" || lesson.level === filter
+  );
+
+  // ADD lesson
+  const addLesson = (newLesson) => {
+    setLessons([...lessons, newLesson]);
+  };
+
+  // UPDATE entire lesson
+  const updateLesson = (updatedLesson) => {
+    const updatedLessons = lessons.map((lesson) =>
+      lesson.id === updatedLesson.id ? updatedLesson : lesson
+    );
+    setLessons(updatedLessons);
+  };
+
+  // UPDATE lesson score
+  const updateLessonScore = (lessonId, newScore) => {
+    const updatedLessons = lessons.map((lesson) =>
+      lesson.id === lessonId ? { ...lesson, score: newScore } : lesson
+    );
+    setLessons(updatedLessons);
+  };
+
+  // DELETE lesson
+  const deleteLesson = (id) => {
+    setLessons(lessons.filter((lesson) => lesson.id !== id));
+  };
+
+  // Load lessons from local storage
+  useEffect(() => {
+    const storedLessons = localStorage.getItem("lessons");
+    if (storedLessons) {
+      setLessons(JSON.parse(storedLessons));
+    }
+  }, []);
+
+  // Save lessons to local storage
+  useEffect(() => {
+    localStorage.setItem("lessons", JSON.stringify(lessons));
+  }, [lessons]);
+
+  const lessonWrapperClass = filteredLessons.length < 3 ? 'lessons-wrapper lessons-wrapper-small' : 'lessons-wrapper';
 
   return (
     <section id="lessons" className="section">
@@ -82,14 +72,30 @@ const LessonList = () => {
           </p>
         </div>
 
-        <div className="section-content">
+        <div className={`section-content ${lessonWrapperClass}`}>
+          <LessonAdd addLesson={addLesson} />
+          <LessonFilter onFilterChange={handleFilterChange} />
+
           <div className="lesson-list">
-            {lessons.length > 0 ? (
-              lessons.map((lesson, index) => (
-                <Lesson key={index} lesson={lesson} />
+            {filteredLessons.length > 0 ? (
+              filteredLessons.map((lesson) => (
+                <Lesson
+                  key={lesson.id}
+                  lesson={lesson}
+                  updateLesson={updateLesson}
+                  updateLessonScore={updateLessonScore}
+                  deleteLesson={deleteLesson}
+                />
               ))
             ) : (
-              <p>No lessons available</p>
+              <div className="no-lessons-info">
+                <p className="no-lessons-list">
+                  No {filter !== "all" ? filter : ""} lessons available
+                </p>
+                <p className="yes-lessons-list">
+                  Add your first {filter !== "all" ? filter : ""} lesson!
+                </p>
+              </div>
             )}
           </div>
         </div>

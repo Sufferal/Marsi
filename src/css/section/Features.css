@@ -26,3 +26,13 @@
   color: var(--secondary-color);
   font-size: 1.25rem;
 }
+
+.roadmap {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.roadmap-img {
+  width: 800px;
+  height: auto;
+}

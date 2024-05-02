@@ -6,6 +6,7 @@ import Header from "./components/section/Header";
 import LessonList from "./components/lesson/LessonList";
 import Navbar from "./components/section/Navbar";
 import { ThemeContext } from "./context/ThemeContext";
+import Contact from "./components/section/Contact";
 
 function App() {
   const [isDark, setIsDark] = useState(() => {
@@ -27,6 +28,7 @@ function App() {
         <Features />
         <LessonList />
         <About />
+        <Contact />
         <Footer />
       </div>
     </ThemeContext.Provider>

@@ -6,7 +6,7 @@ const Footer = () => {
     <footer id="footer">
       <h2 className="footer-title">Copyright Marsi &copy;, 2024</h2>
       <h3 className="footer-subtitle">
-        Made by <span className="highlight-default">
+        Made by <span className="footer-highlight">
           <a
             className="footer-link"
             href="https://github.com/Sufferal"

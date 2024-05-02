@@ -8,13 +8,21 @@ import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import LessonContent from "./LessonContent";
 import LessonReview from "./LessonReview";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const LessonDialog = ({ open, handleClose, lesson, scoreClass, updateLessonScore }) => {
+const LessonDialog = ({
+  open,
+  handleClose,
+  lesson,
+  scoreClass,
+  updateLessonScore,
+}) => {
   const [startClicked, setStartClicked] = useState(false);
+  const { color } = React.useContext(ThemeContext);
 
   const handleStartClick = () => {
     setStartClicked(true);
@@ -30,6 +38,11 @@ const LessonDialog = ({ open, handleClose, lesson, scoreClass, updateLessonScore
       open={open}
       onClose={handleClose}
       TransitionComponent={Transition}
+      PaperProps={{
+        style: {
+          backgroundColor: color,
+        },
+      }}
     >
       <Toolbar className="dialog-wrapper">
         <IconButton
@@ -47,7 +60,9 @@ const LessonDialog = ({ open, handleClose, lesson, scoreClass, updateLessonScore
       <div className="dialog-content">
         <h2 className="lesson-score">
           Score:{" "}
-          <span className={`lesson-score-${scoreClass}`}>{lesson.score}/100</span>
+          <span className={`lesson-score-${scoreClass}`}>
+            {lesson.score}/100
+          </span>
         </h2>
         <div className="container">
           <h3 className="lesson-title">{lesson.title}</h3>

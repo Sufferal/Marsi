@@ -16,6 +16,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const LessonEdit = ({ lesson, updateLesson }) => {
   const [open, setOpen] = useState(false);
@@ -114,6 +115,8 @@ const LessonEdit = ({ lesson, updateLesson }) => {
     setOpen(false);
   };
 
+  const { color } = React.useContext(ThemeContext);
+
   return (
     <div className="lesson-edit">
       <Tooltip title="Edit Lesson">
@@ -135,6 +138,9 @@ const LessonEdit = ({ lesson, updateLesson }) => {
           component: "form",
           onSubmit: handleSubmit,
           id: "edit-lesson-form",
+          style: {
+            backgroundColor: color,
+          },
         }}
       >
         <DialogTitle className="edit-lesson-dialog-title">
@@ -142,8 +148,8 @@ const LessonEdit = ({ lesson, updateLesson }) => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText className="edit-lesson-dialog-tip">
-            Update the title, level, description, content and the tests for the existing
-            lesson.
+            Update the title, level, description, content and the tests for the
+            existing lesson.
           </DialogContentText>
           <FormControl className="edit-lesson-dialog-form">
             <TextField
@@ -325,7 +331,7 @@ const LessonEdit = ({ lesson, updateLesson }) => {
             type="submit"
             onClick={handleSubmit}
           >
-            Update 
+            Update
           </Button>
         </DialogActions>
       </Dialog>

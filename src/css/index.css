@@ -6,11 +6,20 @@
   --primary-color-contrast: #1f5776;
   --secondary-color: #fff;
   --tertiary-color: #000;
+  --error-color: #fe001a;
   --highlight-color: #ffd800;
   --success-color: #3cb043;
   --default-background-color: #808080;
 
   --default-transition: all 0.3s ease-in-out;
+}
+
+[data-theme="dark"] {
+  --primary-color: #00ADB5;
+  --primary-color-dark: #00ADB5;
+  --primary-color-contrast: #00ADB5;
+  --secondary-color: #222831;
+  --default-background-color: #a5a5a5;
 }
 
 *, *::before, *::after {
@@ -49,6 +58,7 @@ input {
 }
 
 .section {
+  background-color: var(--secondary-color);
   padding: 3rem 0;
 
   &:nth-child(even) {
@@ -75,6 +85,7 @@ input {
 }
 
 .section-desc {
+  color: var(--primary-color-contrast);
   max-width: 900px;
   margin: 0 auto;
   margin-bottom: 1.8rem;

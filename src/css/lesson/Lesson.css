@@ -47,7 +47,7 @@
 }
 
 .lesson-level-advanced {
-  background: var(--primary-color);
+  background: var(--error-color);
 }
 
 .lesson-desc {
@@ -68,7 +68,7 @@
 
 .lesson-score-low,
 .lesson-score-medium {
-  color: var(--primary-color);
+  color: var(--error-color);
 }
 
 .lesson-score-high {

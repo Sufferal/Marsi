@@ -1,3 +1,7 @@
+#navbar {
+  background-color: var(--secondary-color);
+}
+
 .navbar-wrapper, 
 .navbar-logo-wrapper,
 .navbar-links {

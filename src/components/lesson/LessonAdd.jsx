@@ -19,6 +19,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useBetween } from "use-between";
 import { useTheme } from "../../hooks/useTheme";
 import { useLessons } from "../../hooks/useLessons";
+import { v4 as uuidv4 } from "uuid";
 
 const LessonAdd = () => {
   const { addLesson } = useBetween(useLessons);
@@ -48,7 +49,7 @@ const LessonAdd = () => {
     }
 
     const newLesson = {
-      id: Date.now(),
+      id: uuidv4(), 
       title: addTitle,
       level: addLevel,
       description: addDescription,

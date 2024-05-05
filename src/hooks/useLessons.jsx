@@ -1,46 +1,72 @@
-import { useState, useEffect } from 'react';
-import defaultLessons from '../assets/data/defaultLessons.json';
+import { useState, useEffect } from "react";
 
 const useLessons = () => {
-  const [lessons, setLessons] = useState(() => {
-    const storedLessons = localStorage.getItem('lessons');
-    return storedLessons ? JSON.parse(storedLessons) : defaultLessons;
-  });
+  const apiURL = "http://localhost:4000/lessons";
+  const [lessons, setLessons] = useState([]);
+
+  useEffect(() => {
+    fetch(apiURL)
+      .then((response) => response.json())
+      .then((data) => setLessons(data))
+      .catch((error) => console.error("Error:", error));
+  }, []);
 
   // ADD lesson
   const addLesson = (newLesson) => {
-    setLessons([...lessons, newLesson]);
+    fetch(apiURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newLesson),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw response;
+        }
+        setLessons([...lessons, newLesson]);
+      })
+      .catch((error) => console.error("Error:", error));
   };
 
   // UPDATE entire lesson
   const updateLesson = (updatedLesson) => {
-    const updatedLessons = lessons.map((lesson) =>
-      lesson.id === updatedLesson.id ? updatedLesson : lesson
-    );
-    setLessons(updatedLessons);
+    fetch(`${apiURL}/${updatedLesson.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedLesson),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw response;
+        }
+        const updatedLessons = lessons.map((lesson) =>
+          lesson.id === updatedLesson.id ? updatedLesson : lesson
+        );
+        setLessons(updatedLessons);
+      })
+      .catch((error) => console.error("Error:", error));
   };
 
   // DELETE lesson
   const deleteLesson = (id) => {
-    setLessons(lessons.filter((lesson) => lesson.id !== id));
+    fetch(`${apiURL}/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw response;
+        }
+        // If delete was successful, update state
+        setLessons(lessons.filter((lesson) => lesson.id !== id));
+      })
+      .catch((error) => console.error("Error:", error));
   };
-
-  // Load lessons from local storage
-  useEffect(() => {
-    const storedLessons = localStorage.getItem('lessons');
-    if (storedLessons) {
-      setLessons(JSON.parse(storedLessons));
-    }
-  }, []);
-
-  // Save lessons to local storage
-  useEffect(() => {
-    localStorage.setItem('lessons', JSON.stringify(lessons));
-    setLessons(lessons);
-  }, [lessons]);
 
   return { lessons, addLesson, updateLesson, deleteLesson };
 };
 
-export { useLessons }
+export { useLessons };
 export default useLessons;

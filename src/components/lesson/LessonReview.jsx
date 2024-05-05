@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import LessonQuestion from "./LessonQuestion";
 import "../../css/lesson/LessonReview.css";
+import { useBetween } from "use-between";
+import { useLessons } from "../../hooks/useLessons";
 
-const LessonReview = ({ id, tests, handleSubmitClick, handleClose, updateLessonScore }) => {
+const LessonReview = ({ lesson, handleSubmitClick, handleClose }) => {
+  const { updateLesson } = useBetween(useLessons);
   const [selectedAnswers, setSelectedAnswers] = useState(
-    Array(tests.length).fill(null)
+    Array(lesson.tests.length).fill(null)
   );
 
   const handleOptionChange = (id, selectedOption) => {
@@ -20,16 +23,20 @@ const LessonReview = ({ id, tests, handleSubmitClick, handleClose, updateLessonS
       return;
     }
 
-     // Assuming tests[i].correctAnswer holds the correct answer for each test
+    // Assuming tests[i].correctAnswer holds the correct answer for each test
     const correctAnswersCount = selectedAnswers.reduce((count, answer, index) => {
-      return answer === tests[index].answer ? count + 1 : count;
+      return answer === lesson.tests[index].answer ? count + 1 : count;
     }, 0);
 
-    let score = (correctAnswersCount / tests.length) * 100;
+    let score = (correctAnswersCount / lesson.tests.length) * 100;
     if(isNaN(score)) {
       score = 0;
     }
-    updateLessonScore(id, Math.trunc(score));
+    let updatedLesson = {
+      ...lesson,
+      score: Math.trunc(score),
+    };
+    updateLesson(updatedLesson);
 
     handleSubmitClick();
     handleClose();
@@ -39,8 +46,8 @@ const LessonReview = ({ id, tests, handleSubmitClick, handleClose, updateLessonS
     <div className="dialog-tests-wrapper">
       <h3 className="dialog-tests-title">Review</h3>
       <div className="tests">
-        {tests.length > 0 ? (
-          tests.map((test, index) => (
+        {lesson.tests.length > 0 ? (
+          lesson.tests.map((test, index) => (
             <div key={index} className="dialog-test">
               <LessonQuestion
                 question={test.question}

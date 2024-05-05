@@ -9,25 +9,27 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import "../../css/lesson/LessonDelete.css";
-import { ThemeContext } from "../../context/ThemeContext";
+import { useBetween } from "use-between";
+import { useTheme } from "../../hooks/useTheme";
+import { useLessons } from "../../hooks/useLessons";
 
-const LessonDelete = ({ deleteLesson }) => {
+const LessonDelete = ({ lesson }) => {
+  const { deleteLesson } = useBetween(useLessons);
   const [open, setOpen] = React.useState(false);
+  const { color } = useBetween(useTheme);
 
-  const handleClickOpen = (event) => {
+  const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = (event) => {
+  const handleClose = () => {
     setOpen(false);
   };
 
-  const handleDelete = (event) => {
-    deleteLesson();
+  const handleDelete = () => {
+    deleteLesson(lesson.id);
     setOpen(false);
   };
-
-  const { color } = React.useContext(ThemeContext);
 
   return (
     <div className="lesson-delete">

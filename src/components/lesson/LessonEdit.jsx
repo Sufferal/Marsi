@@ -16,9 +16,13 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { ThemeContext } from "../../context/ThemeContext";
+import { useBetween } from "use-between";
+import { useTheme } from "../../hooks/useTheme";
+import { useLessons } from "../../hooks/useLessons";
 
-const LessonEdit = ({ lesson, updateLesson }) => {
+const LessonEdit = ({ lesson }) => {
+  const { updateLesson } = useBetween(useLessons);
+  const { color } = useBetween(useTheme); 
   const [open, setOpen] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState(lesson.level);
   const [tests, setTests] = useState(lesson.tests);
@@ -54,7 +58,6 @@ const LessonEdit = ({ lesson, updateLesson }) => {
     };
 
     handleClose();
-    console.log(updatedLesson);
     updateLesson(updatedLesson);
     formElement.reset();
   };
@@ -114,8 +117,6 @@ const LessonEdit = ({ lesson, updateLesson }) => {
   const handleClose = () => {
     setOpen(false);
   };
-
-  const { color } = React.useContext(ThemeContext);
 
   return (
     <div className="lesson-edit">

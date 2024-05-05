@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../../css/lesson/LessonList.css";
 import Lesson from "./Lesson";
 import LessonAdd from "./LessonAdd";
-import defaultLessons from "../../assets/data/defaultLessons.json";
 import LessonFilter from "./LessonFilter";
+import { useBetween } from "use-between";
+import { useLessons } from "../../hooks/useLessons";
 
 const LessonList = () => {
-  const storedLessons = localStorage.getItem("lessons");
-  const initialLessons = storedLessons
-    ? JSON.parse(storedLessons)
-    : defaultLessons;
-  const [lessons, setLessons] = useState(initialLessons);
+  const { lessons } = useBetween(useLessons);
   const [filter, setFilter] = useState("all");
 
   const handleFilterChange = (newFilter) => {
@@ -20,46 +17,10 @@ const LessonList = () => {
     (lesson) => filter === "all" || lesson.level === filter
   );
 
-  // ADD lesson
-  const addLesson = (newLesson) => {
-    setLessons([...lessons, newLesson]);
-  };
-
-  // UPDATE entire lesson
-  const updateLesson = (updatedLesson) => {
-    const updatedLessons = lessons.map((lesson) =>
-      lesson.id === updatedLesson.id ? updatedLesson : lesson
-    );
-    setLessons(updatedLessons);
-  };
-
-  // UPDATE lesson score
-  const updateLessonScore = (lessonId, newScore) => {
-    const updatedLessons = lessons.map((lesson) =>
-      lesson.id === lessonId ? { ...lesson, score: newScore } : lesson
-    );
-    setLessons(updatedLessons);
-  };
-
-  // DELETE lesson
-  const deleteLesson = (id) => {
-    setLessons(lessons.filter((lesson) => lesson.id !== id));
-  };
-
-  // Load lessons from local storage
-  useEffect(() => {
-    const storedLessons = localStorage.getItem("lessons");
-    if (storedLessons) {
-      setLessons(JSON.parse(storedLessons));
-    }
-  }, []);
-
-  // Save lessons to local storage
-  useEffect(() => {
-    localStorage.setItem("lessons", JSON.stringify(lessons));
-  }, [lessons]);
-
-  const lessonWrapperClass = filteredLessons.length < 3 ? 'lessons-wrapper lessons-wrapper-small' : 'lessons-wrapper';
+  const lessonWrapperClass =
+    filteredLessons.length < 3
+      ? "lessons-wrapper lessons-wrapper-small"
+      : "lessons-wrapper";
 
   return (
     <section id="lessons" className="section">
@@ -73,7 +34,7 @@ const LessonList = () => {
         </div>
 
         <div className={`section-content ${lessonWrapperClass}`}>
-          <LessonAdd addLesson={addLesson} />
+          <LessonAdd />
           <LessonFilter onFilterChange={handleFilterChange} />
 
           <div className="lesson-list">
@@ -82,9 +43,6 @@ const LessonList = () => {
                 <Lesson
                   key={lesson.id}
                   lesson={lesson}
-                  updateLesson={updateLesson}
-                  updateLessonScore={updateLessonScore}
-                  deleteLesson={deleteLesson}
                 />
               ))
             ) : (

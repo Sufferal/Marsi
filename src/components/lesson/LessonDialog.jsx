@@ -8,7 +8,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import LessonContent from "./LessonContent";
 import LessonReview from "./LessonReview";
-import { ThemeContext } from "../../context/ThemeContext";
+import { useBetween } from "use-between";
+import { useTheme } from "../../hooks/useTheme";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
@@ -18,11 +19,10 @@ const LessonDialog = ({
   open,
   handleClose,
   lesson,
-  scoreClass,
-  updateLessonScore,
+  scoreClass
 }) => {
   const [startClicked, setStartClicked] = useState(false);
-  const { color } = React.useContext(ThemeContext);
+  const { color } = useBetween(useTheme); 
 
   const handleStartClick = () => {
     setStartClicked(true);
@@ -81,11 +81,9 @@ const LessonDialog = ({
 
           {startClicked && (
             <LessonReview
-              id={lesson.id}
-              tests={lesson.tests}
+              lesson={lesson}
               handleSubmitClick={handleSubmitClick}
               handleClose={handleClose}
-              updateLessonScore={updateLessonScore}
             />
           )}
         </div>

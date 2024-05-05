@@ -16,13 +16,17 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { ThemeContext } from "../../context/ThemeContext";
+import { useBetween } from "use-between";
+import { useTheme } from "../../hooks/useTheme";
+import { useLessons } from "../../hooks/useLessons";
 
-const LessonAdd = ({ addLesson }) => {
+const LessonAdd = () => {
+  const { addLesson } = useBetween(useLessons);
   const [open, setOpen] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState(null);
   const [tests, setTests] = useState([]);
   const [options, setOptions] = useState([]);
+  const { color } = useBetween(useTheme); 
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -115,8 +119,6 @@ const LessonAdd = ({ addLesson }) => {
   const handleClose = () => {
     setOpen(false);
   };
-
-  const { color } = React.useContext(ThemeContext);
 
   return (
     <div className="lesson-add">

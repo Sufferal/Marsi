@@ -4,7 +4,7 @@ import LessonDialog from "./LessonDialog";
 import LessonDelete from "./LessonDelete";
 import LessonEdit from "./LessonEdit";
 
-const Lesson = ({ lesson, updateLesson, updateLessonScore, deleteLesson }) => {
+const Lesson = ({ lesson }) => {
   let scoreClass = "";
   if (lesson.score < 30) {
     scoreClass = "low";
@@ -41,8 +41,8 @@ const Lesson = ({ lesson, updateLesson, updateLessonScore, deleteLesson }) => {
         <div className="lesson-operations-wrapper">
           <button className="start-lesson-btn" onClick={handleClickOpen}>Start lesson</button>
           <div className="lesson-operations">
-            <LessonEdit lesson={lesson} updateLesson={updateLesson} />
-            <LessonDelete deleteLesson={() => deleteLesson(lesson.id)} />
+            <LessonEdit lesson={lesson} />
+            <LessonDelete lesson={lesson} />
           </div>
         </div>
       </div>
@@ -52,7 +52,6 @@ const Lesson = ({ lesson, updateLesson, updateLessonScore, deleteLesson }) => {
         handleClose={handleClose}
         lesson={lesson}
         scoreClass={scoreClass}
-        updateLessonScore={updateLessonScore}
       />
     </div>
   );

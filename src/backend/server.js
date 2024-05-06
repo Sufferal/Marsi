@@ -22,16 +22,38 @@ let db = new sqlite3.Database("./marsi.db", (err) => {
 });
 
 app.get("/lessons", (req, res) => {
-  db.all("SELECT * FROM lessons", [], (err, rows) => {
+  // First, get the total count of records in the database
+  db.get("SELECT COUNT(*) as total FROM lessons", [], (err, row) => {
     if (err) {
       res.status(500).send("Internal Server Error");
       throw err;
     }
-    rows.forEach((row) => {
-      row.content = JSON.parse(row.content);
-      row.tests = JSON.parse(row.tests);
+
+    // Use the total count as the limit for the subsequent query
+    const limit = req.query.limit ? parseInt(req.query.limit) : row.total;
+    const offset = req.query.offset ? parseInt(req.query.offset) : 0;
+
+    // Check if the limit and offset are valid
+    if (isNaN(limit) || isNaN(offset) || limit <= 0 || offset < 0) {
+      return res.status(400).send("Bad Request: Invalid limit or offset");
+    }
+
+    // Check if the offset is within the total number of records
+    if (offset >= row.total) {
+      return res.status(400).send("Bad Request: Offset out of range");
+    }
+
+    db.all("SELECT * FROM lessons LIMIT ? OFFSET ?", [limit, offset], (err, rows) => {
+      if (err) {
+        res.status(500).send("Internal Server Error");
+        throw err;
+      }
+      rows.forEach((row) => {
+        row.content = JSON.parse(row.content);
+        row.tests = JSON.parse(row.tests);
+      });
+      res.status(200).json(rows);
     });
-    res.status(200).json(rows);
   });
 });
 

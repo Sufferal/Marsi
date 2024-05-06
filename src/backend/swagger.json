@@ -17,6 +17,26 @@
         "description": "Get all lessons",
         "summary": "Get all lessons",
         "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Limit the number of lessons to return"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "description": "The number of lessons to skip"
+          }
+        ],
         "responses": {
           "200": {
             "description": "A list of lessons",
@@ -30,6 +50,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid query parameters"
           },
           "500": {
             "description": "Internal server error"

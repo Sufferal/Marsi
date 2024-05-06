@@ -31,3 +31,14 @@
   color: var(--secondary-color);
   font-weight: bold;
 }
+
+.pagination-wrapper {
+  margin-top: 2rem;
+  padding: 1rem 0.5rem;
+  background-color: var(--pagination-bg-color);
+  color: var(--highlight-color);
+
+  &.pagination-wrapper-top {
+    margin-bottom: 2rem;
+  }
+}

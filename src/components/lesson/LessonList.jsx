@@ -3,18 +3,26 @@ import "../../css/lesson/LessonList.css";
 import Lesson from "./Lesson";
 import LessonAdd from "./LessonAdd";
 import LessonFilter from "./LessonFilter";
+import LessonRoles from "./LessonRoles";
 import { useBetween } from "use-between";
 import { useLessons } from "../../hooks/useLessons";
 import { Pagination } from "@mui/material";
 
 const LessonList = () => {
-  const { lessons } = useBetween(useLessons);
+  const { fetchToken, lessons, role, setRole } = useBetween(useLessons);
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState("all");
+
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
     setCurrentPage(1);
   };
+
+  const handleRoleChange = (newRole) => {
+    setRole(newRole);
+    fetchToken(newRole);
+  }; 
+
   const filteredLessons = lessons.filter(
     (lesson) => filter === "all" || lesson.level === filter
   );
@@ -48,7 +56,7 @@ const LessonList = () => {
         </div>
 
         <div className={`section-content ${lessonWrapperClass}`}>
-          <LessonAdd />
+          <LessonRoles onRoleChange={handleRoleChange} />
           <LessonFilter onFilterChange={handleFilterChange} />
 
           <div className="pagination-wrapper pagination-wrapper-top">
@@ -60,10 +68,12 @@ const LessonList = () => {
             />
           </div>
 
+          {(role === "admin" || role === "writer") && <LessonAdd />}
+
           <div className="lesson-list">
             {currentLessons.length > 0 ? (
               currentLessons.map((lesson) => (
-                <Lesson key={lesson.id} lesson={lesson} />
+                <Lesson key={lesson.id} lesson={lesson} role={role} />
               ))
             ) : (
               <div className="no-lessons-info">

@@ -1,14 +1,18 @@
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
 const app = express();
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
+const { authenticateToken, authenticate } = require("./jwt");
 
 // Enable CORS
 app.use(cors());
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
+// Load environment variables
+require("dotenv").config();
 
 // Swagger UI
 app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
@@ -21,7 +25,49 @@ let db = new sqlite3.Database("./marsi.db", (err) => {
   console.log("(Connection): Connected to the SQLite database.");
 });
 
-app.get("/lessons", (req, res) => {
+// Get JWT token
+app.post("/token", (req, res) => {
+  const { username, password } = req.body;
+
+  // Mock authentication logic, replace it with your actual authentication mechanism
+  if (username === "admin" && password === "admin") {
+    const token = jwt.sign({ role: "ADMIN" }, process.env.JWT_KEY, {
+      expiresIn: "1m",
+    });
+    res.status(200).json({
+      token,
+      createdAt: Date.now(),
+      duration: parseInt(process.env.JWT_duration),
+      message: "Admin logged in successfully",
+    });
+  } else if (username === "writer" && password === "writer") {
+    const token = jwt.sign({ role: "WRITER" }, process.env.JWT_KEY, {
+      expiresIn: "1m",
+    });
+    res.status(200).json({
+      token,
+      createdAt: Date.now(),
+      duration: parseInt(process.env.JWT_duration),
+      message: "Writer logged in successfully",
+    });
+  } else if (username === "visitor" && password === "visitor") {
+    const token = jwt.sign({ role: "VISITOR" }, process.env.JWT_KEY, {
+      expiresIn: "1m",
+    });
+    res
+      .status(200)
+      .json({
+        token,
+        createdAt: Date.now(),
+        duration: parseInt(process.env.JWT_duration),
+        message: "Visitor logged in successfully",
+      });
+  } else {
+    res.status(401).json({ message: "Unauthorized: Invalid credentials" });
+  }
+});
+
+app.get("/lessons", authenticateToken, authenticate("GET"), (req, res) => {
   // First, get the total count of records in the database
   db.get("SELECT COUNT(*) as total FROM lessons", [], (err, row) => {
     if (err) {
@@ -43,22 +89,26 @@ app.get("/lessons", (req, res) => {
       return res.status(400).send("Bad Request: Offset out of range");
     }
 
-    db.all("SELECT * FROM lessons LIMIT ? OFFSET ?", [limit, offset], (err, rows) => {
-      if (err) {
-        res.status(500).send("Internal Server Error");
-        throw err;
+    db.all(
+      "SELECT * FROM lessons LIMIT ? OFFSET ?",
+      [limit, offset],
+      (err, rows) => {
+        if (err) {
+          res.status(500).send("Internal Server Error");
+          throw err;
+        }
+        rows.forEach((row) => {
+          row.content = JSON.parse(row.content);
+          row.tests = JSON.parse(row.tests);
+        });
+        res.status(200).json(rows);
       }
-      rows.forEach((row) => {
-        row.content = JSON.parse(row.content);
-        row.tests = JSON.parse(row.tests);
-      });
-      res.status(200).json(rows);
-    });
+    );
   });
 });
 
 // Get a specific lesson by id
-app.get("/lessons/:id", (req, res) => {
+app.get("/lessons/:id", authenticateToken, authenticate("GET"), (req, res) => {
   db.get("SELECT * FROM lessons WHERE id = ?", [req.params.id], (err, row) => {
     if (err) {
       res.status(500).send("Internal Server Error");
@@ -73,7 +123,7 @@ app.get("/lessons/:id", (req, res) => {
 });
 
 // Add a new lesson
-app.post("/lessons", (req, res) => {
+app.post("/lessons", authenticateToken, authenticate("POST"), (req, res) => {
   const newLesson = req.body;
 
   if (
@@ -85,15 +135,6 @@ app.post("/lessons", (req, res) => {
     !newLesson.content ||
     !newLesson.tests
   ) {
-    console.log(
-      !newLesson.id,
-      !newLesson.title,
-      !newLesson.level,
-      !newLesson.description,
-      !newLesson.score,
-      !newLesson.content,
-      !newLesson.tests
-    );
     return res.status(400).send("Bad Request: Missing required fields");
   }
 
@@ -137,7 +178,7 @@ app.post("/lessons", (req, res) => {
 });
 
 // Update a lesson
-app.put("/lessons/:id", (req, res) => {
+app.put("/lessons/:id", authenticateToken, authenticate("PUT"), (req, res) => {
   const lesson = req.body;
 
   // Validation
@@ -181,9 +222,17 @@ app.put("/lessons/:id", (req, res) => {
   });
 });
 
-// Delete a lesson
-app.delete("/lessons/:id", (req, res) => {
-  db.get("SELECT * FROM lessons WHERE id = ?", [req.params.id], (err, row) => {
+// Patch a lesson score
+app.patch("/lessons/:id", authenticateToken, authenticate("PATCH"), (req, res) => {
+  const lessonId = req.params.id;
+  const score = req.body.score;
+
+  // Validation
+  if (!Number.isInteger(score) || score < 0 || score > 100) {
+    return res.status(400).send("Bad Request: Invalid score");
+  }
+
+  db.get("SELECT * FROM lessons WHERE id = ?", [lessonId], (err, row) => {
     if (err) {
       res.status(500).send("Internal Server Error");
       throw err;
@@ -191,14 +240,50 @@ app.delete("/lessons/:id", (req, res) => {
     if (!row) {
       return res.status(404).send("Lesson not found");
     }
-    db.run("DELETE FROM lessons WHERE id = ?", req.params.id, function (err) {
-      if (err) {
-        return console.error(err.message);
+    db.run(
+      "UPDATE lessons SET score = ? WHERE id = ?",
+      [score, lessonId],
+      function (err) {
+        if (err) {
+          return console.error(err.message);
+        }
+        res.status(200).json("Lesson score updated successfully");
       }
-      res.status(200).send("Lesson deleted successfully");
-    });
+    );
   });
 });
 
-const port = 4000;
+// Delete a lesson
+app.delete(
+  "/lessons/:id",
+  authenticateToken,
+  authenticate("DELETE"),
+  (req, res) => {
+    db.get(
+      "SELECT * FROM lessons WHERE id = ?",
+      [req.params.id],
+      (err, row) => {
+        if (err) {
+          res.status(500).send("Internal Server Error");
+          throw err;
+        }
+        if (!row) {
+          return res.status(404).send("Lesson not found");
+        }
+        db.run(
+          "DELETE FROM lessons WHERE id = ?",
+          req.params.id,
+          function (err) {
+            if (err) {
+              return console.error(err.message);
+            }
+            res.status(200).send("Lesson deleted successfully");
+          }
+        );
+      }
+    );
+  }
+);
+
+const port = process.env.PORT;
 app.listen(port, () => console.log(`(Server): Running on port ${port}`));

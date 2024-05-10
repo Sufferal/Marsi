@@ -5,7 +5,7 @@ import { useBetween } from "use-between";
 import { useLessons } from "../../hooks/useLessons";
 
 const LessonReview = ({ lesson, handleSubmitClick, handleClose }) => {
-  const { updateLesson } = useBetween(useLessons);
+  const { patchLesson } = useBetween(useLessons);
   const [selectedAnswers, setSelectedAnswers] = useState(
     Array(lesson.tests.length).fill(null)
   );
@@ -36,7 +36,7 @@ const LessonReview = ({ lesson, handleSubmitClick, handleClose }) => {
       ...lesson,
       score: Math.trunc(score),
     };
-    updateLesson(updatedLesson);
+    patchLesson(updatedLesson.id, updatedLesson.score);
 
     handleSubmitClick();
     handleClose();

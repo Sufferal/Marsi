@@ -1,0 +1,23 @@
+.lesson-roles {
+  margin-bottom: 2rem;
+  background-color: var(--secondary-color);
+  padding: 1rem 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.lesson-roles .role-btn {
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: var(--default-transition);
+  border: none;
+  border-radius: 3px;
+
+  &.active {
+    background-color: var(--success-color);
+    color: var(--secondary-color);
+  }
+}

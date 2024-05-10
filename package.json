@@ -47,6 +47,8 @@
   },
   "devDependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "jsonwebtoken": "^9.0.2",
     "sqlite3": "^5.1.7",
     "swagger-ui-express": "^5.0.0"
   }

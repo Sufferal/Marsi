@@ -10,205 +10,14 @@
       "description": "Back-end development server"
     }
   ],
-  "paths": {
-    "/lessons": {
-      "get": {
-        "tags": ["Lesson"],
-        "description": "Get all lessons",
-        "summary": "Get all lessons",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "limit",
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "description": "Limit the number of lessons to return"
-          },
-          {
-            "in": "query",
-            "name": "offset",
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            },
-            "description": "The number of lessons to skip"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A list of lessons",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Lesson"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid query parameters"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      },
-      "post": {
-        "tags": ["Lesson"],
-        "description": "Create a new lesson and ensure that id and options are unique in the tests array",
-        "summary": "Create a new lesson",
-        "produces": ["application/json"],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Lesson"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "Lesson created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Lesson"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid lesson data"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     },
-    "/lessons/{id}": {
-      "get": {
-        "tags": ["Lesson"],
-        "description": "Get a lesson by the uuid (v4)",
-        "summary": "Get a lesson by id",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "description": "ID of the lesson to get",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A lesson",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Lesson"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Lesson not found"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      },
-      "put": {
-        "tags": ["Lesson"],
-        "description": "Update a lesson by the uuid (v4)",
-        "summary": "Update a lesson by id",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "description": "ID of the lesson to update",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Lesson"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Lesson updated",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Lesson"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid lesson data"
-          },
-          "404": {
-            "description": "Lesson not found"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Lesson"],
-        "description": "Delete a lesson by the uuid (v4)",
-        "summary": "Delete a lesson by id",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "description": "ID of the lesson to delete",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Lesson deleted"
-          },
-          "404": {
-            "description": "Lesson not found"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      }
-    }
-  },
-  "components": {
     "schemas": {
       "Lesson": {
         "type": "object",
@@ -278,6 +87,356 @@
               "type": "string",
               "minLength": 1
             }
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "minLength": 1
+          },
+          "password": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": ["username", "password"]
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/token": {
+      "post": {
+        "tags": ["JWT"],
+        "description": "Get a JWT token",
+        "summary": "Get a JWT token",
+        "produces": ["application/json"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "example": {
+                "username": "admin",
+                "password": "admin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JWT token generated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/lessons": {
+      "get": {
+        "tags": ["Lesson"],
+        "description": "Get all lessons",
+        "summary": "Get all lessons",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Limit the number of lessons to return"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "description": "The number of lessons to skip"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of lessons",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Lesson"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query parameters"
+          },
+          "401": {
+            "description": "Unauthorized access"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Lesson"],
+        "description": "Create a new lesson and ensure that id and options are unique in the tests array",
+        "summary": "Create a new lesson",
+        "produces": ["application/json"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Lesson"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Lesson created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lesson"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid lesson data"
+          },
+          "403": {
+            "description": "Forbidden access"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/lessons/{id}": {
+      "get": {
+        "tags": ["Lesson"],
+        "description": "Get a lesson by the uuid (v4)",
+        "summary": "Get a lesson by id",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the lesson to get",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A lesson",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lesson"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized access"
+          },
+          "404": {
+            "description": "Lesson not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Lesson"],
+        "description": "Update a lesson by the uuid (v4)",
+        "summary": "Update a lesson by id",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the lesson to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Lesson"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Lesson updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lesson"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid lesson data"
+          },
+          "403": {
+            "description": "Forbidden access"
+          },
+          "404": {
+            "description": "Lesson not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Lesson"],
+        "description": "Update a lesson score by the uuid (v4)",
+        "summary": "Update a lesson score by id",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the lesson to update score",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "score": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  }
+                },
+                "required": ["score"]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Lesson score updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lesson"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid lesson data"
+          },
+          "403": {
+            "description": "Forbidden access"
+          },
+          "404": {
+            "description": "Lesson not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Lesson"],
+        "description": "Delete a lesson by the uuid (v4)",
+        "summary": "Delete a lesson by id",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the lesson to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lesson deleted"
+          },
+          "403": {
+            "description": "Forbidden access"
+          },
+          "404": {
+            "description": "Lesson not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
